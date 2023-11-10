@@ -1,18 +1,24 @@
 class Solution {
     public int numSubarrayBoundedMax(int[] nums, int left, int right) {
-        return count(nums, right) - count(nums, left - 1);
-    }
+        int i = 0;
+        int j = 0;
+        int count = 0;
+        int lastValidLength = 0;
 
-    private int count(int[] nums, int bound) { //returns number of subarrays having elements smaller than equal given bound
-        int ans = 0, cnt = 0;
-        for (int x : nums) {
-            if (x <= bound) {
-                cnt++;
-            } else {
-                cnt = 0;
+        while(j<nums.length){
+            if(nums[j]>=left && nums[j]<=right){
+                lastValidLength = j-i+1;
+                count += lastValidLength;
             }
-            ans += cnt;
+            else if(nums[j]<left){
+                count+= lastValidLength;
+            }
+            else{
+                i=j+1;
+                lastValidLength = 0;
+            }
+            j++;
         }
-        return ans;
+        return count;
     }
 }
