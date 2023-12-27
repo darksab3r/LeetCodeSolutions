@@ -6,7 +6,6 @@ class Solution {
         for(int i=1;i<colors.length();i++){
             if(!stack.isEmpty() && colors.charAt(stack.peek())==colors.charAt(i)){
                 if(neededTime[stack.peek()]<=neededTime[i]){
-                    System.out.print(stack.peek()+" "+i+" | ");
                     minTime+=neededTime[stack.pop()];
                     stack.push(i);
                 }
