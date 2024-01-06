@@ -33,16 +33,13 @@ class Solution {
         while (low <= high) {
             int mid = (low + high) / 2;
             if (jobs[mid][1] <= jobs[index][0]) {
-                if (jobs[mid + 1][1] <= jobs[index][0]) {
-                    low = mid + 1;
-                } else {
-                    return mid;
-                }
+                low = mid + 1;
             } else {
                 high = mid - 1;
             }
         }
 
-        return -1; // No non-overlapping job found
+        // Return the index of the last non-overlapping job found (or -1 if none)
+        return (high >= 0) ? high : -1;
     }
 }
