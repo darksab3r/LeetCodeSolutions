@@ -27,19 +27,19 @@ class Solution {
         return dp[n - 1];
     }
 
-    private int binarySearch(int[][] jobs, int index) {
-        int low = 0, high = index - 1;
+private int binarySearch(int[][] jobs, int index) {
+    int low = 0, high = index - 1;
 
-        while (low <= high) {
-            int mid = (low + high) / 2;
-            if (jobs[mid][1] <= jobs[index][0]) {
-                low = mid + 1;
-            } else {
-                high = mid - 1;
-            }
+    while (low <= high) {
+        int mid = (low + high) / 2;
+        if (jobs[mid][1] <= jobs[index][0]) {
+            low = mid + 1;
+        } else {
+            high = mid - 1;
         }
+    }
 
-        // Return the index of the last non-overlapping job found (or -1 if none)
-        return (high >= 0) ? high : -1;
+    // Return the index of the last non-overlapping job found (or -1 if none)
+    return (low > 0) ? low - 1 : -1;
     }
 }
